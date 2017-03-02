@@ -87,7 +87,6 @@ function add_numberKeys_handler() {
     });
 }
 
-
 function initializeEvents() {
     'use strict';
     var thumbnails = getThumbnailsArray();
