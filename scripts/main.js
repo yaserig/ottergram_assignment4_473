@@ -80,7 +80,7 @@ function add_numberKeys_handler() {
     var thumbnails = getThumbnailsArray();
     document.body.addEventListener('keyup', function(event) {
         event.preventDefault();
-        if ((event.keyCode >= 49) && (event.keyCode <= 53)) {
+        if ((event.keyCode >= 49) && (event.keyCode <= 57)) {
             setDetailsFromThumb(thumbnails[event.keyCode - 49]);
             showDetails();
         }
