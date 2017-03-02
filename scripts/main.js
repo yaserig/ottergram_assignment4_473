@@ -50,29 +50,41 @@ function getThumbnailsArray() {
 }
 
 function hideDetails() {
-  'use strict';
-  document.body.classList.add(HIDDEN_DETAIL_CLASS);
+    'use strict';
+    document.body.classList.add(HIDDEN_DETAIL_CLASS);
 }
 
 function showDetails() {
-  'use strict';
-  var frame = document.querySelector(DETAIL_FRAME_SELECTOR);
-  document.body.classList.remove(HIDDEN_DETAIL_CLASS);
-  frame.classList.add(TINY_EFFECT_CLASS);
-  setTimeout(function () {
-  frame.classList.remove(TINY_EFFECT_CLASS);
-}, 50);
+    'use strict';
+    var frame = document.querySelector(DETAIL_FRAME_SELECTOR);
+    document.body.classList.remove(HIDDEN_DETAIL_CLASS);
+    frame.classList.add(TINY_EFFECT_CLASS);
+    setTimeout(function() {
+        frame.classList.remove(TINY_EFFECT_CLASS);
+    }, 50);
 }
 
 function addKeyPressHandler() {
-  'use strict';
-  document.body.addEventListener('keyup', function (event) {
-    event.preventDefault();
-    console.log(event.keyCode);
-    if (event.keyCode === ESC_KEY) {
-      hideDetails();
-    }
-  });
+    'use strict';
+    document.body.addEventListener('keyup', function(event) {
+        event.preventDefault();
+        console.log(event.keyCode);
+        if (event.keyCode === ESC_KEY) {
+            hideDetails();
+        }
+    });
+}
+
+function add_numberKeys_handler() {
+    'use strict';
+    var thumbnails = getThumbnailsArray();
+    document.body.addEventListener('keyup', function(event) {
+        event.preventDefault();
+        if ((event.keyCode >= 49) && (event.keyCode <= 53)) {
+            setDetailsFromThumb(thumbnails[event.keyCode - 49]);
+            showDetails();
+        }
+    });
 }
 
 
@@ -81,6 +93,7 @@ function initializeEvents() {
     var thumbnails = getThumbnailsArray();
     thumbnails.forEach(addThumbClickHandler);
     addKeyPressHandler();
+    add_numberKeys_handler();
 
 }
 
